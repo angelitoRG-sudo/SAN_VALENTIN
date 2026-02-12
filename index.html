@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Mi Amor 💜</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: radial-gradient(circle, #2b1055, #000);
+  overflow: hidden;
+  color: white;
+}
+
+/* 🌌 ESTRELLAS */
+.estrella {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 6px white;
+  z-index: 3;
+}
+
+/* 🌠 ESTRELLAS FUGACES */
+.fugaz {
+  position: fixed;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, white, transparent);
+  animation: fugaz 1s linear;
+  z-index: 3;
+}
+
+@keyframes fugaz {
+  from { transform: translateX(0) translateY(0); opacity: 1; }
+  to { transform: translateX(400px) translateY(400px); opacity: 0; }
+}
+
+/* 💌 CARTA */
+.carta {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.4);
+  z-index: 10;
+}
+
+.carta-box {
+  background: #f3d9ff;
+  color: #4b0082;
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255,255,255,0.5);
+}
+
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+#yes { background: #c77dff; color: white; }
+#no { background: #aaa; }
+
+/* ❤️ CORAZONES VOLANDO */
+.corazon {
+  position: fixed;
+  bottom: -10px;
+  font-size: 16px;
+  animation: flotar 8s linear infinite;
+  z-index: 2;
+}
+
+@keyframes flotar {
+  to { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* 🌸 PETALOS */
+.petalo {
+  position: fixed;
+  top: -10px;
+  font-size: 18px;
+  animation: caer 10s linear infinite;
+  z-index: 2;
+}
+
+@keyframes caer {
+  to { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+}
+
+/* 🌷 JARDÍN */
+.jardin {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(#1b0033, #4b0082);
+  z-index: 1;
+}
+
+/* TULIPANES */
+.tulipan {
+  position: absolute;
+  bottom: 0;
+  width: 6px;
+  height: 100px;
+  background: #2e8b57;
+}
+
+.flor {
+  position: absolute;
+  top: -18px;
+  width: 24px;
+  height: 30px;
+  border-radius: 50% 50% 40% 40%;
+}
+
+.lila { background: #c77dff; }
+.rosa { background: #ff4d6d; }
+.blanco { background: white; }
+
+/* MENSAJE */
+.mensaje {
+  position: fixed;
+  top: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 6;
+}
+
+/* BOTON TE AMO */
+#teamo {
+  position: fixed;
+  bottom: 102px;
+  right: 6%;
+  background: #c77dff;
+  color: white;
+  font-size: 18px;
+  z-index: 6;
+}
+
+/* CARTA LADO */
+#cartaLado{
+  position: fixed;
+  left: 10px;
+  top: 80px;
+  width: 40%;
+  max-width: 320px;
+  font-size: 16px;
+  color: #ffd6ff;
+  white-space: pre-line;
+  z-index: 8;
+}
+
+/* 🌳 ARBOL */
+#arbolCorazon {
+  position: fixed;
+  right: 0;
+  bottom: 10;
+  width: 50vw;
+  height: 85vh;
+  max-width: 360px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#arbolCorazon path {
+  stroke: #b565ff;
+  stroke-width: 6;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.crecer {
+  animation: crecer 2.5s ease forwards;
+}
+
+@keyframes crecer {
+  to { stroke-dashoffset: 0; }
+}
+
+
+/* 💜 CORAZONES */
+.corazonRama {
+  position: absolute;
+  font-size: 16px;
+  opacity: 0;
+  animation: latir 2s infinite;
+}
+
+@keyframes latir {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+/* 📸 FOTOS */
+.fotoArbol {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  border: 3px solid white;
+  box-shadow: 0 0 15px #ff00ff;
+  position: absolute;
+}@media (max-width: 600px) {
+
+  /* 🌳 Árbol completo centrado */
+  #arbolCorazon {
+    width: 60vw;
+    height: 60vh;
+    left: 50%;
+    right: auto;
+    transform: translateX(-70%);
+    bottom: 130px;
+  }
+
+  /* 💜 Carta visible */
+  #cartaLado {
+    width: 48%;
+    font-size: 13px;
+    top: 100px;
+    left: 5px;
+  }
+
+  /* 💘 Botón centrado abajo del árbol */
+  #teamo {
+    bottom: 150px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+
+
+
+</style>
+</head>
+
+<body>
+
+<!-- CARTA -->
+<div class="carta" id="carta">
+  <div class="carta-box">
+    <h2 id="textoCarta"></h2>
+    <button id="yes">Sí 💜</button>
+    <button id="no">No 😢</button>
+  </div>
+</div>
+
+<div class="jardin" id="jardin">
+  <div class="mensaje" id="mensaje"></div>
+  <div id="cartaLado"></div>
+  <button id="teamo">TE AMO 💘</button>
+<div id="arbolCorazon">
+<svg viewBox="0 0 300 500" width="100%" height="100%">
+
+<!-- 🌳 TRONCO ORGÁNICO -->
+<path id="tronco" d="
+M150 480 
+C140 420 160 360 150 300
+C140 260 120 220 110 180
+C120 200 140 220 150 250
+C160 220 180 200 190 180
+C170 220 160 260 150 300
+C140 350 155 420 150 480" />
+
+<!-- 🌿 RAMAS PRINCIPALES -->
+<path id="r1" d="M150 260 C90 220 60 160 50 120" />
+<path id="r2" d="M150 260 C210 220 240 160 250 120" />
+
+<!-- 🌿 RAMAS SECUNDARIAS -->
+<path id="r3" d="M120 240 C80 220 60 200 40 180" />
+<path id="r4" d="M180 240 C220 220 240 200 260 180" />
+
+<path id="r5" d="M110 200 C80 180 60 150 50 130" />
+<path id="r6" d="M190 200 C220 180 240 150 250 130" />
+
+<path id="r7" d="M130 300 C100 280 80 260 70 240" />
+<path id="r8" d="M170 300 C200 280 220 260 230 240" />
+
+</svg>
+</div>
+
+</div>
+
+<script>
+// ⭐ ESTRELLAS
+for(let i=0;i<300;i++){
+  const e=document.createElement("div");
+  e.className="estrella";
+  e.style.left=Math.random()*100+"vw";
+  e.style.top=Math.random()*100+"vh";
+  document.body.appendChild(e);
+}
+
+// 🌠 ESTRELLAS FUGACES
+setInterval(()=>{
+  const f=document.createElement("div");
+  f.className="fugaz";
+  f.style.left=Math.random()*100+"vw";
+  f.style.top=Math.random()*50+"vh";
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),1000);
+},3000);
+
+// 💜 CORAZONES FLOTANDO
+setInterval(()=>{
+  const c=document.createElement("div");
+  c.className="corazon";
+  c.innerHTML="💜";
+  c.style.left=Math.random()*100+"vw";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),8000);
+},500);
+
+// 🌸 PETALOS
+setInterval(()=>{
+  const p=document.createElement("div");
+  p.className="petalo";
+  p.innerHTML="🌸";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=(6+Math.random()*6)+"s";
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),12000);
+},300);
+
+// ✍️ CARTA INICIAL
+const texto="Mi amor... ¿Quieres ser mi San Valentín para siempre?";
+let i=0;
+function escribir(){
+  if(i<texto.length){
+    textoCarta.innerHTML+=texto[i++];
+    setTimeout(escribir,60);
+  }
+}
+escribir();
+
+// BOTON NO SE MUEVE
+no.onmouseover=()=>{
+  no.style.position="relative";
+  no.style.left=Math.random()*200+"px";
+  no.style.top=Math.random()*80+"px";
+};
+
+// 🌷 TULIPANES
+function crearTulipanes(){
+  const colores=["lila","rosa","blanco"];
+  for(let i=0;i<80;i++){
+    const t=document.createElement("div");
+    t.className="tulipan";
+    t.style.left=Math.random()*100+"%";
+    t.style.height=(60+Math.random()*80)+"px";
+    const f=document.createElement("div");
+    f.className="flor "+colores[Math.random()*3|0];
+    t.appendChild(f);
+    jardin.appendChild(t);
+  }
+}
+
+// ⏳ CONTADOR
+function iniciarContador(){
+  const inicio = new Date("2023-04-16T00:00:00"); // cambia hora si quieres
+
+  function actualizar(){
+    const ahora = new Date();
+    let diff = ahora - inicio;
+
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    diff %= (1000 * 60 * 60 * 24);
+
+    const horas = Math.floor(diff / (1000 * 60 * 60));
+    diff %= (1000 * 60 * 60);
+
+    const minutos = Math.floor(diff / (1000 * 60));
+    diff %= (1000 * 60);
+
+    const segundos = Math.floor(diff / 1000);
+
+    mensaje.innerHTML = `
+      Mi amor por ti comenzó aquella noche del 16 de abril del 2023 💜<br>
+      ⏳ ${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos juntos
+    `;
+  }
+
+  setInterval(actualizar, 1000);
+  actualizar();
+}
+
+
+// ✉️ CARTA LADO
+const textoLado=`Mi amor 💜
+Gracias por ser mi todo.
+Te amo para siempre.`;
+let cl=0;
+function escribirLado(){
+  if(cl<textoLado.length){
+    cartaLado.innerHTML+=textoLado[cl++];
+    setTimeout(escribirLado,40);
+  }
+}
+
+// 🌳 CRECER ARBOL
+function crecerArbol(){
+  tronco.classList.add("crecer");
+
+ ["r1","r2","r3","r4","r5","r6","r7","r8"]
+.forEach((id,i)=>{
+    setTimeout(()=>document.getElementById(id).classList.add("crecer"),1500+i*700);
+  });
+
+  setTimeout(crearCopaCorazones,6000);
+}
+
+
+// 💜 CORAZONES EN RAMAS
+function crearCorazonesRamas(){
+  const pos=[[60,150],[240,150],[50,200],[250,200],[80,250],[220,250],[120,300],[180,300]];
+  pos.forEach(p=>{
+    for(let i=0;i<6;i++){
+      const c=document.createElement("div");
+      c.className="corazonRama";
+      c.innerHTML="💜";
+      c.style.left=p[0]+Math.random()*20+"px";
+      c.style.top=p[1]+Math.random()*20+"px";
+      arbolCorazon.appendChild(c);
+      setTimeout(()=>c.style.opacity=1,i*200);
+    }
+  });
+}
+
+// 💜 CORAZÓN PERFECTO FORMÁNDOSE
+function formarCorazonGrande(){
+  const scale=7, cx=150, cy=210;
+  let puntos=[];
+
+  for(let t=0;t<360;t+=2){
+    const a=t*Math.PI/180;
+    const x=16*Math.pow(Math.sin(a),3);
+    const y=13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a);
+    puntos.push({x:cx+x*scale, y:cy-y*scale});
+  }
+
+  puntos.forEach((p,i)=>{
+    const c=document.createElement("div");
+    c.className="corazonRama";
+    c.innerHTML="💜";
+    c.style.left=p.x+"px";
+    c.style.top=p.y+"px";
+    arbolCorazon.appendChild(c);
+    setTimeout(()=>c.style.opacity=1,i*40); // aparece uno por uno
+  });
+}
+
+
+// 📸 FOTOS EN EL CORAZÓN
+let fotosMostradas=false;
+teamo.onclick=()=>{
+  if(fotosMostradas) return;
+  fotosMostradas=true;
+
+  const posiciones=[
+    [120,200],[170,200],
+    [100,240],[190,240],
+    [150,260],
+    [110,300],[190,300],
+    [150,320]
+  ];
+
+  posiciones.forEach((p,i)=>{
+    const img=document.createElement("img");
+    img.src=`foto${i+1}.jpeg`;
+    img.className="fotoArbol";
+    img.style.left=p[0]+"px";
+    img.style.top=p[1]+"px";
+    img.style.transform="rotate("+((Math.random()*20)-10)+"deg)";
+    arbolCorazon.appendChild(img);
+  });
+};
+
+
+// BOTON SI
+yes.onclick=()=>{
+  carta.style.display="none";
+  jardin.style.display="block";
+  crearTulipanes();
+  iniciarContador();
+  escribirLado();
+  crecerArbol();
+};
+function crearCopaCorazones(){
+  const cx=150, cy=180, scale=9;
+
+  for(let i=0;i<800;i++){
+    const t = Math.random()*Math.PI*2;
+    const x = 16*Math.pow(Math.sin(t),3);
+    const y = 13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t);
+
+    const c=document.createElement("div");
+    c.className="corazonRama";
+    c.innerHTML="❤️";
+    c.style.left=(cx + x*scale + (Math.random()*25-12))+"px";
+    c.style.top=(cy - y*scale + (Math.random()*25-12))+"px";
+    c.style.fontSize=(10+Math.random()*14)+"px";
+    arbolCorazon.appendChild(c);
+
+    setTimeout(()=>c.style.opacity=1, i*3);
+  }
+}
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
