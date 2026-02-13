@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para Mi Amor 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
-  font-family: 'Georgia', serif;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
   background: radial-gradient(circle, #2b1055, #000);
   overflow: hidden;
   color: white;
@@ -136,7 +137,7 @@ button {
   top: 10px;
   width: 100%;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   z-index: 6;
 }
@@ -145,7 +146,9 @@ button {
 #teamo {
   position: fixed;
   bottom: 102px;
-  right: 6%;
+  left: 5%;
+  right: 5%;
+  width: 90%;
   background: #c77dff;
   color: white;
   font-size: 18px;
@@ -156,19 +159,26 @@ button {
 #cartaLado{
   position: fixed;
   left: 10px;
+  right: 10px;
   top: 80px;
-  width: 40%;
-  max-width: 320px;
-  font-size: 16px;
+  width: auto;
+  max-width: 100%;
+  font-size: 18px;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.5px;
   color: #ffd6ff;
   white-space: pre-line;
   z-index: 8;
+  text-align: center;
+  line-height: 1.6;
 }
 
 /* 🌳 ARBOL */
 #arbolCorazon {
   position: fixed;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 10;
   width: 50vw;
   height: 85vh;
@@ -220,28 +230,33 @@ button {
 
   /* 🌳 Árbol completo centrado */
   #arbolCorazon {
-    width: 60vw;
-    height: 60vh;
-    left: 50%;
-    right: auto;
-    transform: translateX(-70%);
-    bottom: 130px;
-  }
-
-  /* 💜 Carta visible */
-  #cartaLado {
-    width: 48%;
-    font-size: 13px;
-    top: 100px;
-    left: 5px;
-  }
-
-  /* 💘 Botón centrado abajo del árbol */
-  #teamo {
-    bottom: 150px;
+    width: 40vw;
+    height: 40vh;
     left: 50%;
     right: auto;
     transform: translateX(-50%);
+    bottom: 150px;
+  }
+
+  /* 💜 Carta visible - FULL WIDTH */
+  #cartaLado {
+    width: auto;
+    font-size: 13px;
+    top: 110px;
+    left: 10px;
+    right: 10px;
+    text-align: center;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+  }
+
+  /* 💘 Botón largo abajo del árbol */
+  #teamo {
+    bottom: 160px;
+    left: 3%;
+    right: 5%;
+    width: 90%;
+    transform: none;
   }
 }
 
@@ -403,13 +418,10 @@ function iniciarContador(){
 
 // ✉️ CARTA LADO
 const textoLado=`Mi amor 💜
-Gracias por ser mi todo.
-Gracias por cada sonrisa, cada abrazo, cada momento juntos.
-Eres mi inspiración, mi alegría, mi paz.
-Hoy quiero prometerte que siempre estaré a tu lado, amándote y cuidándote.
-Eres el amor de mi vida, mi mejor amiga y mi confidente.
-Feliz San Valentín, mi amor.
-Te amo para siempre.`;
+Gracias por ser mi todo, por cada sonrisa, cada abrazo, cada momento juntos.
+Eres mi inspiración, mi alegría, mi paz y hoy quiero prometerte 
+que siempre estaré a tu lado, amándote y cuidándote. Eres el amor de mi vida, mi mejor amiga y mi confidente.
+Feliz San Valentín, mi amor. Te amo para siempre.`;
 let cl=0;
 function escribirLado(){
   if(cl<textoLado.length){
@@ -477,12 +489,23 @@ teamo.onclick=()=>{
   if(fotosMostradas) return;
   fotosMostradas=true;
 
-  const posiciones=[
-    [120,200],[170,200],
-    [100,240],[190,240],
-    [150,260],
-    [110,300],[190,300],
-    [150,320]
+  // Usar el mismo centro que la copa de corazones
+  const isMobile = window.innerWidth <= 600;
+  const cx = isMobile ? 45 : 150;
+  const cy = isMobile ? 25 : 180;
+  
+  const posiciones = isMobile ? [
+    [cx-40, cy-50],[cx+40, cy-50],
+    [cx-50, cy-20],[cx+50, cy-20],
+    [cx, cy],
+    [cx-50, cy+30],[cx+50, cy+30],
+    [cx, cy+60]
+  ] : [
+    [cx-40, cy-50],[cx+40, cy-50],
+    [cx-50, cy-20],[cx+50, cy-20],
+    [cx, cy],
+    [cx-50, cy+30],[cx+50, cy+30],
+    [cx, cy+60]
   ];
 
   posiciones.forEach((p,i)=>{
@@ -507,7 +530,11 @@ yes.onclick=()=>{
   crecerArbol();
 };
 function crearCopaCorazones(){
-  const cx=150, cy=180, scale=9;
+  // Detectar si es móvil para ajustar el centro
+  const isMobile = window.innerWidth <= 600;
+  const cx = isMobile ? 55 : 150; // Centro X más a la izquierda en móvil
+  const cy = isMobile ? 30 : 180; // Centro Y más arriba en móvil
+  const scale = isMobile ? 8.64 : 12.96; // 20% más grande
 
   for(let i=0;i<800;i++){
     const t = Math.random()*Math.PI*2;
