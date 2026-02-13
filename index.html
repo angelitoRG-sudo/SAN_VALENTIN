@@ -242,7 +242,7 @@ button {
   #cartaLado {
     width: auto;
     font-size: 13px;
-    top: 110px;
+    top: 105px;
     left: 10px;
     right: 10px;
     text-align: center;
@@ -531,8 +531,8 @@ yes.onclick=()=>{
 function crearCopaCorazones(){
   // Detectar si es móvil para ajustar el centro
   const isMobile = window.innerWidth <= 600;
-  const cx = isMobile ? 55 : 150; // Centro X más a la izquierda en móvil
-  const cy = isMobile ? 30 : 180; // Centro Y más arriba en móvil
+  const cx = isMobile ? 60 : 150; // Centro X más a la izquierda en móvil
+  const cy = isMobile ? 35 : 180; // Centro Y más arriba en móvil
   const scale = isMobile ? 8.64 : 12.96; // 20% más grande
 
   for(let i=0;i<800;i++){
@@ -556,6 +556,7 @@ function crearCopaCorazones(){
 </script>
 </body>
 </html>
+
 
 
 
